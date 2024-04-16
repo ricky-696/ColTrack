@@ -1,5 +1,9 @@
 import argparse
 from pathlib import Path
+
+import sys
+sys.path.append('motlib/evaluation/evaluate_metrics/trackeval_manager')
+
 from motlib.utils import get_args_parser
 from motlib.engine.task_engine import build_engin
 import torch.distributed as dist

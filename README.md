@@ -60,6 +60,12 @@ Download [MOT17](https://motchallenge.net/), [CrowdHuman](https://www.crowdhuman
 ```
 mot_files
    |——————dataset
+   |        └——————crowdhuman
+   |                  └—————images
+   |                          └—————train
+   |                          └—————val
+   |                  └—————annotation_train.odgt
+   |                  └—————annotation_val.odgt
    |        └——————dancetrack
    |                  └—————test
    |                  └—————train

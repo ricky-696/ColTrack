@@ -69,6 +69,7 @@ scipy==1.7.3
 setuptools==65.5.0
 six==1.16.0
 sklearn==0.0
+tabulate
 tensorboard
 tensorboard-data-server==0.6.1
 tensorboard-plugin-wit==1.8.1
