@@ -42,7 +42,8 @@ def config_process_default(args, dataset_name, eval_config, ts_path=None):
         'GT_LOC_FORMAT': "{gt_folder}/gt/{seq}.txt",
         "SEQMAP_FILE": str(gt_path / 'seq_info.json'),
         'TRACKERS_FOLDER' : ts_path,
-        'TRACKERS_TO_EVAL': [args.tracker_name, 'IPTrack'],
+        # 'TRACKERS_TO_EVAL': [args.tracker_name, 'IPTrack'],
+        'TRACKERS_TO_EVAL': [args.tracker_name],
         'TRACKER_SUB_FOLDER': "track_results",
         "OUTPUT_FOLDER" : str(output_folder)
     }
@@ -72,7 +73,8 @@ def config_process_bdd100k(args, dataset_name, eval_config, ts_path=None):
     evaluator_config['USE_PARALLEL'] = False
     evaluator_config['LOG_ON_ERROR'] = str(output_folder / 'error_log.txt')
 
-    trackers_to_eval = [args.tracker_name, 'IPTrack']
+    # trackers_to_eval = [args.tracker_name, 'IPTrack']
+    trackers_to_eval = [args.tracker_name]
     for tracker_name in trackers_to_eval:
         convert_motchallenge2bdd100k(eval_config['coco_path'], ts_path=ts_path, tracker_name=tracker_name, sub_folder="track_results")
 

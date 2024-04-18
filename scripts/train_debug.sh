@@ -24,6 +24,6 @@ torchrun \
 mot.py \
 --save_log --output_dir $LOG_DIR \
 --tracker_name ByteTracker \
---options use_ema=False dataset_file=dancetrack_mix_ablation config_file=config/TBD/single_class.py
+--options use_ema=False dataset_file=debug_dataset config_file=config/TBD/single_class.py
 
 # The configuration of dataset_file is specified in the file of motlib/mot_dataset/dataset_config.

@@ -207,17 +207,17 @@ def my_evaluate_coco(model, criterion, postprocessors, data_loader, base_ds, dev
     if utils.get_rank() in [-1, 0]:
         track_by_offline(args, deepcopy(data_loader.dataset.coco.dataset['videos']), str(savefolder), len(data_loader.dataset))
         track_results_path = '{}/{}/track_results'.format(args.output_dir, args.tracker_name)
-        interpolation_track_results_path = '{}/{}/track_results'.format(args.output_dir, 'IPTrack')
-        set_dir(interpolation_track_results_path)
-        iptrack(txt_path=track_results_path, save_path=interpolation_track_results_path)
+        # interpolation_track_results_path = '{}/{}/track_results'.format(args.output_dir, 'IPTrack')
+        # set_dir(interpolation_track_results_path)
+        # iptrack(txt_path=track_results_path, save_path=interpolation_track_results_path)
         dataset_name = data_loader.dataset.dataset_name
         assert len(dataset_name) == 1
         output_res, _ = mot_eval_metrics(args, dataset_name=dataset_name[0], eval_config=data_loader.dataset.coco.eval_config)
         res_record = filter_result(stats, output_res, args.tracker_name, data_loader.dataset.coco.eval_config['dataset_class'], res_record)
-        res_record_dti = filter_result(stats, output_res, 'IPTrack', data_loader.dataset.coco.eval_config['dataset_class'], res_record_dti)
+        # res_record_dti = filter_result(stats, output_res, 'IPTrack', data_loader.dataset.coco.eval_config['dataset_class'], res_record_dti)
     if utils.is_dist_avail_and_initialized():
             dist.barrier()
             dist.broadcast(res_record, 0)
-            dist.broadcast(res_record_dti, 0)
+            # dist.broadcast(res_record_dti, 0)
     output = {'Det':res_record[0].item(),'HOTA': res_record[1].item(), 'MOTA': res_record[2].item(), 'IdSW': res_record[3].item(), 'IDF1': res_record[4].item(), 'HOTA_dti': res_record_dti[1].item(), 'MOTA_dti': res_record_dti[2].item(), 'IdSW_dti': res_record_dti[3].item(), 'IDF1_dti': res_record_dti[4].item()}
     return output

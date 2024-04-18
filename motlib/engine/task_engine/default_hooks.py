@@ -21,11 +21,11 @@ class EvalHook(HookBase):
 
     def after_epoch(self):
         if ( self.trainer.epoch + 1 ) % self.eval_step == 0:
-            try:
-                self.eval_func()
-            except:
-                logger = logging.getLogger(__name__)
-                logger.error('During test, error raised.')
+            # try:
+            self.eval_func()
+            # except:
+            #     logger = logging.getLogger(__name__)
+            #     logger.error('During test, error raised.')
     
     def after_train(self):
         if self.trainer.epoch % self.eval_step != 0:
